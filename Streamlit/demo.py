@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 st.set_page_config(page_title="Streamlit Basics",page_icon="tada", layout="wide")
 
@@ -9,7 +10,7 @@ section = st.sidebar.radio("Section",[
     "1. Text & Layout",
     "2. Widgets & Reruns",
     "3. Session state",
-    "4. Chat UI Preview "
+    "4. Chat UI Preview"
 ])
 
 if section=="1. Text & Layout":
@@ -109,3 +110,31 @@ elif section == "3. Session state":
             st.write(item)
     else:
         st.info("No notes yet. Add a note to get started")
+        
+elif section == "4. Chat UI Preview":
+    st.header("Chat UI Preview")
+    st.markdown("This is the preview of the chat UI")
+    
+    if "chat_log" not in st.session_state:
+        st.session_state.chat_log = []
+    
+    for entry in st.session_state.chat_log:
+        with st.chat_message(entry["role"]):
+            st.write(entry["content"])
+
+    prompt = st.chat_input("Try asking me anything...")
+
+    if prompt:
+        st.session_state.chat_log.append({"role": "user", "content": prompt})
+
+        with st.chat_message("user"):
+            st.write(prompt)
+
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                time.sleep(2)
+                st.write("Dummy response")
+
+                st.session_state.chat_log.append(
+                    {"role": "assistant", "content": "Dummy response"}
+                )
