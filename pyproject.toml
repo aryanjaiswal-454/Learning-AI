@@ -8,6 +8,7 @@ dependencies = [
     "groq>=1.7.0",
     "ipykernel>=7.3.0",
     "python-dotenv>=1.2.4",
+    "yfinance>=1.7.0",
 ]
 
 [tool.uv]
