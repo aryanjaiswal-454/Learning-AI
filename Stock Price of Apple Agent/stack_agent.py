@@ -36,6 +36,12 @@ You are a helpful stock market assistant. When the user asks about a stock price
 think step-by-step about what you need to do, then call the get_stock_price tool
 with the correct symbol. After recieving the result, present the information in a 
 clear, and friendly manner.
+
+IMPORTANT-> SHOULD BE STRICTLY FOLLOWED: Always call the get_stock_price tool with the correct ticker symbol. Dont't 
+pick up the price from our old conversations, as the price keeps on changing. Do not assume
+the price from conversations. Always whenever a price for a stock is asked, we need to call 
+the relevant tool again.
+
 Always reason out loud before acting so the user can follow your chain os thought.
 """
 
@@ -170,20 +176,38 @@ def run_agent(user_query:str)->None:
             tools=TOOL_DEFINITION,
         )
         choice = response.choices[0]
-        assistan_msg = choice.message
+        assistant_msg = choice.message
         
-        messages.append(assistan_msg)
-        print(assistan_msg)
+        messages.append(assistant_msg)
+        # print(assistant_msg)
         
-        if assistan_msg.content:
-            print(f"Assistant (thinking): {assistan_msg.content}\n")
+        if assistant_msg.content:
+            print(f"Assistant (thinking): {assistant_msg.content}\n")
             
         if choice.finish_reason=="stop":
             break
         
-        if not assistan_msg.tool_calls:
+        if not assistant_msg.tool_calls:
             break
         
+        for tool_call in assistant_msg.tool_calls:
+            fn_name = tool_call.function.name
+            fn_args = json.loads(tool_call.function.arguments)
+
+            print(f" [Tool Call] {fn_name}({fn_args})")
+
+            fn = AVAILABLE_TOOLS[fn_name]
+            result = fn(**fn_args)
+
+            print(f" [Tool Result] {result}\n")
+
+            messages.append({
+                "role": "tool",
+                "tool_call_id": tool_call.id,
+                "content": result,
+            })
+            
+         
     return None
         
 
