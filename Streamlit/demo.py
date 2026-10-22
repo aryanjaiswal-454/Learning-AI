@@ -66,3 +66,46 @@ elif section == "2. Widgets & Reruns":
     if st.button("Increment"):
         counter+=1
         st.write(f"Counter: {counter}")
+        
+elif section == "3. Session state":
+    st.header("Session state")
+    st.markdown(
+        """
+        Session state allows you to store values that persist across runs.
+        """
+    )
+
+    if "click_count" not in st.session_state:
+        st.session_state.click_count = 0
+        
+    if "note" not in st.session_state:
+        st.session_state.note=[]
+
+    col_a, col_b, col_c = st.columns(3)
+
+    with col_a:
+        if st.button("Click me"):
+            st.session_state.click_count += 1
+
+    with col_b:
+        if st.button("Reset"):
+            st.session_state.click_count = 0
+
+    with col_c:
+        st.metric(
+            label="Click count",
+            value=st.session_state.click_count
+        )
+        
+    note = st.text_input(label="Note",placeholder="Add a note here...")
+    
+    if st.button("Save note") and note.strip():
+        st.session_state.note.append(note.strip())
+        note=""
+
+    if st.session_state.note:
+        st.subheader("Notes")
+        for item in st.session_state.note:
+            st.write(item)
+    else:
+        st.info("No notes yet. Add a note to get started")
