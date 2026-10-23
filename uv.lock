@@ -349,6 +349,7 @@ dependencies = [
     { name = "groq" },
     { name = "ipykernel" },
     { name = "python-dotenv" },
+    { name = "requests" },
     { name = "streamlit" },
     { name = "yfinance" },
 ]
@@ -358,6 +359,7 @@ requires-dist = [
     { name = "groq", specifier = ">=1.7.0" },
     { name = "ipykernel", specifier = ">=7.3.0" },
     { name = "python-dotenv", specifier = ">=1.2.4" },
+    { name = "requests", specifier = ">=2.34.2" },
     { name = "streamlit", specifier = ">=1.66.1" },
     { name = "yfinance", specifier = ">=1.7.0" },
 ]
