@@ -1,4 +1,5 @@
 from dotenv import load_dotenv
+from pathlib import Path
 load_dotenv()
 import os
 
@@ -6,3 +7,6 @@ GEOCODE_URL = os.getenv("GEOCODE_URL","https://geocoding-api.open-meteo.com/v1/s
 FORECAST_URL = os.getenv("FORECAST_URL","https://api.open-meteo.com/v1/forecast")
 
 WEATHER_REQUEST_TIMEOUT = int(os.getenv("WEATHER_REQUEST_TIMEOUT","10"))
+
+PROJECT_ROOT = Path(__file__).parent.parent
+PROMPTS_DIR = PROJECT_ROOT/"Weather_Agent"/"prompts"
