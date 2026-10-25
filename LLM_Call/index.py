@@ -11,7 +11,6 @@ response = client.chat.completions.create(
     messages=[
         {
             "role":"user",
-            # role can u
             "content":"Explain the importance of fast language models",
         }
     ],
