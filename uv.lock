@@ -729,6 +729,7 @@ dependencies = [
     { name = "sqlalchemy" },
     { name = "streamlit" },
     { name = "tensorflow" },
+    { name = "typing-extensions" },
     { name = "uvicorn" },
     { name = "yfinance" },
 ]
@@ -757,6 +758,7 @@ requires-dist = [
     { name = "sqlalchemy" },
     { name = "streamlit" },
     { name = "tensorflow" },
+    { name = "typing-extensions", specifier = ">=4.16.0" },
     { name = "uvicorn" },
     { name = "yfinance" },
 ]
