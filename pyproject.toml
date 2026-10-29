@@ -33,6 +33,7 @@ dependencies = [
     "ipykernel",
     "typing-extensions>=4.16.0",
     "langsmith>=0.14.13",
+    "langchain-tavily>=0.2.18",
 ]
 
 [tool.uv]
