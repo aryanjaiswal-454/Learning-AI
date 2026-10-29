@@ -32,6 +32,7 @@ dependencies = [
     "pymysql",
     "ipykernel",
     "typing-extensions>=4.16.0",
+    "langsmith>=0.14.13",
 ]
 
 [tool.uv]
