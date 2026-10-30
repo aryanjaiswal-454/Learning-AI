@@ -34,6 +34,9 @@ dependencies = [
     "typing-extensions>=4.16.0",
     "langsmith>=0.14.13",
     "langchain-tavily>=0.2.18",
+    "langchain-mcp-adapters>=0.3.2",
+    "fastmcp>=3.4.11",
+    "mcp>=1.30.0",
 ]
 
 [tool.uv]
