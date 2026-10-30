@@ -68,4 +68,3 @@ def lookup_weather(location:str)->str:
     
     except Exception as e:
         return f"ERROR: Unexpected weather response error."
-print(lookup_weather("London"))
