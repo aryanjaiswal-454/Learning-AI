@@ -1,10 +1,12 @@
 from src.data_loader import load_all_documents
-from src.embedding import EmbeddingPipeline
+from src.vectorstore import FaissVectorStore
 
 
-# Example usage
 if __name__ == "__main__":
-    docs = load_all_documents("data")
-    chunks = EmbeddingPipeline().chunk_documents(docs)
-    chunkvectors = EmbeddingPipeline().embed_chunks(chunks)
-    print(chunkvectors)
+    # docs = load_all_documents("./data")
+
+    store = FaissVectorStore("faiss_store")
+    # store.build_from_documents(docs)
+    store.load()
+
+    print(store.query("What is Large Language Model?", top_k=3))
